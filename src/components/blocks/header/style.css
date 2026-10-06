@@ -1,0 +1,162 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1rem 0;
+  transition: all 0.3s ease;
+  background: transparent;
+}
+
+.navbar.scrolled {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 0.75rem 0;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-menu a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.nav-menu a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gradient-1);
+  transition: width 0.3s ease;
+}
+
+.nav-menu a:hover::after,
+.nav-menu a.active::after {
+  width: 100%;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+  color: var(--primary);
+}
+.resume-btn {
+  display: inline-block;
+  padding: 8px 18px;
+  background: transparent;
+  color: #fff !important;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.resume-btn:hover {
+  background: transparent;
+  transform: translateY(-2px);
+}
+
+.iconDownload {
+  position: relative;
+  top: 3px;
+  left: 3px;
+}
+
+.bottom-nav {
+  display: none;
+}
+/* =====================================================
+   МОБИЛКА (≤768px)
+   ===================================================== */
+@media (max-width: 768px) {
+
+  .nav-container {
+    padding: 0 1rem;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* Логотип — виден, не сжимается, не уезжает */
+  .nav-container > *:first-child {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .nav-menu {
+    display: flex;
+    gap: 0;
+    margin-left: auto;
+  }
+
+  .nav-menu > li:not(.resume-actions) {
+    display: none;
+  }
+
+  .resume-actions {
+    display: flex;
+    gap: 6px;
+    margin-left: 0;
+  }
+
+  .resume-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  /* --- Нижняя панель --- */
+  .bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    justify-content: space-around;
+    align-items: center;
+    background: #010112;
+    padding: 26px 0 calc(10px + env(safe-area-inset-bottom));
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, .15);
+    z-index: 1000;
+  }
+
+  .bottom-nav a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* gap: 4px; */
+    color: #fff;
+    text-decoration: none;
+    opacity: .50;
+    transition: opacity .2s, transform .2s;
+    font-size: 11px;
+    flex: 1;
+    text-align: center;
+  }
+
+  .bottom-nav a.active { opacity: 1; }
+  .bottom-nav a:active { transform: scale(.9); }
+
+  body { padding-bottom: 80px; }
+}
