@@ -5,7 +5,7 @@ import ResultScreen from '../ResultScreen/ResultScreen.jsx';
 import { words } from '../Words/words.jsx';                    // ⬅️ только words
 import { shuffle, getOptions, saveRecord } from '../GameUtils/gameUtils.jsx';
 import { playSound, stopSound, stopAllSounds } from '../Sound/Sound.jsx';
-import '../Home/style.css';
+import '../Glavni/style.css';
 
 function Game({ count = 10, onExit }) {
   // ===== Перемешиваем и обрезаем до N =====

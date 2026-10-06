@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Home from '../layout/home/home';
+import Home from '../layout/Glavni/Glavni';
 import Game from '../layout/Game/Game';
 
 

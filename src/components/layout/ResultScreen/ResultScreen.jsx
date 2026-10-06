@@ -1,6 +1,6 @@
 // ResultScreen.jsx
 import React from 'react';
-import '../Home/style.css';
+import '../Glavni/style.css';
 
 function ResultScreen({ score, total, onRestart, onExit }) {
   const percent = total > 0 ? Math.round((score / total) * 100) : 0;
