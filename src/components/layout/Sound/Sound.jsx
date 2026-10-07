@@ -1,12 +1,16 @@
 import FailMusic from '../../../../public/Sounds/Fail.mp3'
 import SuccessMusic from '../../../../public/Sounds/Succsess.mp3'
 import TimerMusic from '../../../../public/Sounds/TimerMusic (2).mp3'
+import winMusic from '../../../../public/Sounds/finishSuccess.mp3'
+import FillMusic from '../../../../public/Sounds/FillMucis.mp3'
 
 // Пути к аудиофайлам. Положи файлы в public/sounds/
 const SOUNDS = {
     tick: TimerMusic,
     correct: SuccessMusic,
     wrong: FailMusic,
+    win: winMusic,
+    lose: FillMusic,
 };
 
 // Кэш Audio-объектов, чтобы не создавать каждый раз

@@ -1,0 +1,147 @@
+/* ===== Быстрые кнопки количества ===== */
+.quick-counts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 12px 0 20px;
+  max-width: 500px;
+}
+
+.quick-count-btn {
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: inherit;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+  min-width: 60px;
+}
+
+.quick-count-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #4caf50;
+}
+
+.quick-count-btn.active {
+  background: #4caf50;
+  border-color: #4caf50;
+  transform: scale(1.05);
+}
+
+/* ===== Кастомный ввод ===== */
+.custom-count {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.custom-count label {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.custom-count-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stepper-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  padding: 0;
+}
+
+.stepper-btn:hover {
+  background: #4caf50;
+  border-color: #4caf50;
+  transform: scale(1.1);
+}
+
+.stepper-btn:active {
+  transform: scale(0.95);
+}
+
+#custom-count-input {
+  width: 120px;
+  padding: 10px 14px;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: inherit;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  text-align: center;
+  outline: none;
+  transition: 0.2s;
+}
+
+#custom-count-input:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3);
+}
+
+#custom-count-input.has-error {
+  border-color: #f44336;
+  box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.3);
+}
+
+.input-error {
+  color: #f44336;
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+/* Подсказка внизу */
+.hero-hint {
+  font-size: 14px;
+  opacity: 0.7;
+  margin-top: 12px;
+}
+
+.hero-hint b {
+  color: #4caf50;
+  font-size: 16px;
+}
+
+/* ===== Мобильный адаптив ===== */
+@media (max-width: 600px) {
+  .quick-counts {
+    gap: 8px;
+  }
+  .quick-count-btn {
+    padding: 9px 16px;
+    font-size: 14px;
+    min-width: 50px;
+  }
+  #custom-count-input {
+    width: 100px;
+    font-size: 16px;
+  }
+  .stepper-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 20px;
+  }
+}

@@ -1,0 +1,66 @@
+/* ===== Экран результатов: победа / поддержка ===== */
+.result-screen {
+  position: relative;
+  overflow: hidden;
+}
+
+.result-screen.win {
+  background: radial-gradient(circle at 50% 0%, #2a3f2a 0%, #1e1e2f 60%);
+}
+
+.result-screen.lose {
+  background: radial-gradient(circle at 50% 0%, #2a2a3f 0%, #1e1e2f 60%);
+}
+
+.result-emoji {
+  font-size: 80px;
+  margin-bottom: 10px;
+  animation: bounce 1s ease infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+
+.result-subtitle {
+  font-size: 16px;
+  color: #bbb;
+  margin-bottom: 20px;
+}
+
+.new-record-badge {
+  display: inline-block;
+  background: #ffd54f;
+  color: #333;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 10px;
+  animation: pulse 1.5s ease infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.08); }
+}
+
+/* Кнопка «Ещё конфетти» */
+.btn-celebrate {
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(45deg, #ff9800, #ff5722);
+  color: #fff;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: 0.2s;
+  font-family: inherit;
+  font-weight: 600;
+}
+.btn-celebrate:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 152, 0, 0.5);
+}
