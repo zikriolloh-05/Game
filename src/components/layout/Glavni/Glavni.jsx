@@ -16,6 +16,8 @@ function Glavni({ onStart }) {
   const [count, setCount] = useState(10);
   const [inputValue, setInputValue] = useState('10');
   const [error, setError] = useState('');
+  const [direction, setDirection] = useState('ru-tj');
+
 
   // Обработка ввода в input
   const handleInputChange = (e) => {
@@ -57,23 +59,41 @@ function Glavni({ onStart }) {
   };
 
   // Клик по кнопке «Играть»
+  // const handleStart = () => {
+  //   if (error) return;
+
+  //   let finalCount = count;
+  //   if (count === 'all') {
+  //     finalCount = 'all';
+  //   } else {
+  //     finalCount = Math.min(Math.max(count, MIN_QUESTIONS), MAX_QUESTIONS);
+  //   }
+  //   onStart(finalCount);
+  // };
+
   const handleStart = () => {
     if (error) return;
-
-    let finalCount = count;
-    if (count === 'all') {
-      finalCount = 'all';
-    } else {
-      finalCount = Math.min(Math.max(count, MIN_QUESTIONS), MAX_QUESTIONS);
-    }
-    onStart(finalCount);
+    let finalCount = count === 'all' ? 'all' : Math.min(Math.max(count, MIN_QUESTIONS), MAX_QUESTIONS);
+    onStart(finalCount, direction);   // ⬅️ второй аргумент
   };
 
   return (
     <section className="hero">
       <h1>Игра: Перевод слов</h1>
-      <p>Русский → Таджикский</p>
-
+      <div className="direction-switch">
+        <button
+          className={`direction-btn ${direction === 'ru-tj' ? 'active' : ''}`}
+          onClick={() => setDirection('ru-tj')}
+        >
+          🇷🇺 → 🇹🇯 Русский → Таджикский
+        </button>
+        <button
+          className={`direction-btn ${direction === 'tj-ru' ? 'active' : ''}`}
+          onClick={() => setDirection('tj-ru')}
+        >
+          🇹🇯 → 🇷🇺 Таджикский → Русский
+        </button>
+      </div>
       {record.total > 0 && (
         <div className="record-badge">
           🏆 Рекорд: {record.percent}% ({record.score}/{record.total})

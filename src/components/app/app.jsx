@@ -6,9 +6,12 @@ import Game from '../layout/Game/Game';
 function App() {
   const [screen, setScreen] = useState('home');
   const [count, setCount] = useState(10);
+  const [direction, setDirection] = useState('ru-tj');   // 🆕
 
-  const startGame = (cnt) => {
+
+  const startGame = (cnt, dir) => {
     setCount(cnt);
+    setDirection(dir);
     setScreen('game');
   };
 
@@ -17,6 +20,7 @@ function App() {
     : (
       <Game
         count={count}
+        direction={direction}
         onExit={() => setScreen('home')}
       />
     );

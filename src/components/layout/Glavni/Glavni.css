@@ -145,3 +145,58 @@
     font-size: 20px;
   }
 }
+
+/* ===== Переключатель направления ===== */
+.direction-switch {
+  display: flex;
+  gap: 10px;
+  margin: 16px 0 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.direction-btn {
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.direction-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #4caf50;
+}
+
+.direction-btn.active {
+  background: #4caf50;
+  border-color: #4caf50;
+  transform: scale(1.03);
+  box-shadow: 0 0 15px rgba(76, 175, 80, 0.4);
+}
+
+/* Подсказка направления в игре */
+.direction-hint {
+  font-size: 14px;
+  opacity: 0.7;
+  margin-bottom: 10px;
+}
+
+/* Мобильный адаптив */
+@media (max-width: 600px) {
+  .direction-switch {
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+  }
+  .direction-btn {
+    padding: 10px 16px;
+    font-size: 13px;
+    width: 100%;
+  }
+}

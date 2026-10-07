@@ -7,8 +7,8 @@ import { shuffle, getOptions, saveRecord } from '../GameUtils/gameUtils.jsx';
 import { playSound, stopSound, stopAllSounds } from '../Sound/Sound.jsx';
 import '../Glavni/style.css';
 
-function Game({ count = 10, onExit }) {
-  // ===== Перемешиваем и обрезаем до N =====
+function Game({ count = 10, direction = 'ru-tj', onExit }) {
+  // ===== Слова для игры =====
   const gameWords = useMemo(() => {
     const shuffled = shuffle(words);
     if (count === 'all') return shuffled;
@@ -25,9 +25,16 @@ function Game({ count = 10, onExit }) {
 
   const current = gameWords[index];
 
+  // 🆕 Ключи вопроса и ответа зависят от направления
+  // ru-tj: вопрос = ru, правильный ответ = tj
+  // tj-ru: вопрос = tj, правильный ответ = ru
+  const questionKey = direction === 'ru-tj' ? 'ru' : 'tj';
+  const answerKey   = direction === 'ru-tj' ? 'tj' : 'ru';
+
+  // 🆕 getOptions теперь генерирует варианты по нужному ключу
   const options = useMemo(
-    () => (current ? getOptions(current, words) : []),
-    [current]
+    () => (current ? getOptions(current, words, answerKey) : []),
+    [current, answerKey]
   );
 
   useEffect(() => {
@@ -60,7 +67,7 @@ function Game({ count = 10, onExit }) {
     stopSound('tick');
     stopSound('tickFast');
 
-    if (option === current.tj) {
+    if (option === current[answerKey]) {   // 🆕 сравнение по answerKey
       playSound('correct', { volume: 0.7 });
       setScore((s) => s + 1);
     } else {
@@ -111,17 +118,23 @@ function Game({ count = 10, onExit }) {
         <button onClick={onExit}>Выйти</button>
       </div>
 
+      {/* 🆕 Показываем подсказку направления */}
+      <div className="direction-hint">
+        {direction === 'ru-tj' ? '🇷🇺 → 🇹🇯' : '🇹🇯 → 🇷🇺'}
+      </div>
+
       <Timer
         duration={12}
         onTimeUp={handleTimeUp}
         resetKey={resetKey + gameId}
       />
 
-      <h2>Как переводится: «{current.ru}»?</h2>
+      {/* 🆕 Вопрос берём по questionKey */}
+      <h2>Как переводится: «{current[questionKey]}»?</h2>
 
       <div className="options">
         {options.map((opt) => {
-          const isCorrect = opt === current.tj;
+          const isCorrect = opt === current[answerKey];   // 🆕
           const isSelected = selected === opt;
           const showCorrect = selected !== null && isCorrect && !isSelected;
 

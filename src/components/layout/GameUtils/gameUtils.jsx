@@ -9,15 +9,32 @@ export function shuffle(array) {
   return arr;
 }
 
-export function getOptions(currentWord, allWords, count = 4) {
-  const correct = currentWord.tj;
+// 🆕 answerKey: 'tj' (для ru-tj) или 'ru' (для tj-ru)
+export function getOptions(currentWord, allWords, answerKey = 'tj', count = 4) {
+  const correct = currentWord[answerKey];
+
+  // Берём другие слова, исключая совпадающие переводы
   const others = allWords
     .filter((w) => w.id !== currentWord.id)
-    .map((w) => w.tj);
+    .map((w) => w[answerKey])
+    .filter((val) => val !== correct);
 
-  const wrongOptions = shuffle(others).slice(0, count - 1);
+  // Убираем дубликаты (Set) — чтобы не было двух одинаковых вариантов
+  const uniqueOthers = [...new Set(others)];
+
+  const wrongOptions = shuffle(uniqueOthers).slice(0, count - 1);
   return shuffle([correct, ...wrongOptions]);
 }
+
+// export function getOptions(currentWord, allWords, count = 4) {
+//   const correct = currentWord.tj;
+//   const others = allWords
+//     .filter((w) => w.id !== currentWord.id)
+//     .map((w) => w.tj);
+
+//   const wrongOptions = shuffle(others).slice(0, count - 1);
+//   return shuffle([correct, ...wrongOptions]);
+// }
 
 // ===== РЕКОРД (localStorage) =====
 const RECORD_KEY = 'word_game_record';
