@@ -26,15 +26,8 @@ export function getOptions(currentWord, allWords, answerKey = 'tj', count = 4) {
   return shuffle([correct, ...wrongOptions]);
 }
 
-// export function getOptions(currentWord, allWords, count = 4) {
-//   const correct = currentWord.tj;
-//   const others = allWords
-//     .filter((w) => w.id !== currentWord.id)
-//     .map((w) => w.tj);
 
-//   const wrongOptions = shuffle(others).slice(0, count - 1);
-//   return shuffle([correct, ...wrongOptions]);
-// }
+
 
 // ===== РЕКОРД (localStorage) =====
 const RECORD_KEY = 'word_game_record';
