@@ -1,0 +1,56 @@
+/* Основной контейнер приложения */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 70px;   /* место под навигацию */
+}
+
+.app-content {
+  flex: 1;
+}
+
+/* Нижняя навигация */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 65px;
+  background: #1a1a2e;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 100;
+}
+
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  padding: 8px 0;
+  transition: 0.2s;
+}
+
+.nav-icon  { font-size: 22px; }
+.nav-label { font-size: 11px; }
+
+.nav-item.active {
+  color: #4caf50;
+}
+
+/* ⚠️ Только на мобилке */
+@media (min-width: 768px) {
+  .bottom-nav { display: none; }
+  .app { padding-bottom: 0; }
+}
+
+.nav-item { color: #888; }
+.nav-item.active { color: #4caf50; }

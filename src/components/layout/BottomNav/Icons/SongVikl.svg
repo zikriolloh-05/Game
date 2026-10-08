@@ -1,0 +1,10 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  width="22"
+  height="22"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path d="M3 10v4h3l4 4V6L6 10H3zm18.3 2l-1.4-1.4-2.1 2.1-2.1-2.1-1.4 1.4L16.4 14l-2.1 2.1 1.4 1.4 2.1-2.1 2.1 2.1 1.4-1.4L19.2 14l2.1-2z" />
+</svg>

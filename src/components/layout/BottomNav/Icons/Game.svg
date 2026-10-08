@@ -1,0 +1,10 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  width="22"
+  height="22"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path d="M7 6h10a5 5 0 0 1 4.9 4l1 5a3 3 0 0 1-5.4 2.4L16 15H8l-1.5 2.4A3 3 0 0 1 1.1 15l1-5A5 5 0 0 1 7 6zm-1 5a1 1 0 0 0 0 2h1v1a1 1 0 1 0 2 0v-1h1a1 1 0 1 0 0-2h-1v-1a1 1 0 1 0-2 0v1H6zm10.5-1a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5zm2.5 3a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5z" />
+</svg>

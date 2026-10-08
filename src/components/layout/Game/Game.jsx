@@ -2,19 +2,32 @@ import React, { useState, useMemo, useEffect } from 'react';
 import Timer from '../Timer/Timer.jsx';
 import OptionButton from '../OptionButton/OptionButton.jsx';
 import ResultScreen from '../ResultScreen/ResultScreen.jsx';
-import { words } from '../Words/words.jsx';                    // ⬅️ только words
-import { shuffle, getOptions, saveRecord } from '../GameUtils/gameUtils.jsx';
+import { words } from '../Words/words.jsx';
+import { wordsEn } from '../Words/words-en.jsx';              // 🆕
+import { getSettings, shuffle, getOptions, addRecord } from '../GameUtils/gameUtils.jsx';
 import { playSound, stopSound, stopAllSounds } from '../Sound/Sound.jsx';
 import '../Glavni/style.css';
 
-function Game({ count = 10, direction = 'ru-tj', onExit }) {
+function Game({ onExit }) {
+  // ===== Настройки =====
+  const settings = useMemo(() => getSettings(), []);
+  const { count = 10, direction = 'ru-tj', sound = true, lang = 'ru' } = settings;
+
+  // ===== Выбор словаря =====
+  const activeWords = lang === 'en' ? wordsEn : words;
+
+  // ===== Ключи вопроса и ответа =====
+  const questionKey = direction.split('-')[0];   // 'ru' | 'tj' | 'en'
+  const answerKey = direction.split('-')[1];   // 'tj' | 'ru' | 'en'
+
   // ===== Слова для игры =====
   const gameWords = useMemo(() => {
-    const shuffled = shuffle(words);
+    const shuffled = shuffle(activeWords);
     if (count === 'all') return shuffled;
     return shuffled.slice(0, count);
-  }, [count]);
+  }, [activeWords, count]);
 
+  // ===== Состояния =====
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState(null);
   const [score, setScore] = useState(0);
@@ -25,25 +38,25 @@ function Game({ count = 10, direction = 'ru-tj', onExit }) {
 
   const current = gameWords[index];
 
-  // 🆕 Ключи вопроса и ответа зависят от направления
-  // ru-tj: вопрос = ru, правильный ответ = tj
-  // tj-ru: вопрос = tj, правильный ответ = ru
-  const questionKey = direction === 'ru-tj' ? 'ru' : 'tj';
-  const answerKey   = direction === 'ru-tj' ? 'tj' : 'ru';
-
-  // 🆕 getOptions теперь генерирует варианты по нужному ключу
+  // ===== Варианты ответа =====
   const options = useMemo(
-    () => (current ? getOptions(current, words, answerKey) : []),
-    [current, answerKey]
+    () => (current ? getOptions(current, activeWords, answerKey) : []),
+    [current, activeWords, answerKey]
   );
 
+  // ===== Останавливаем звуки при выходе =====
   useEffect(() => {
     return () => stopAllSounds();
   }, []);
 
+  // ===== Завершение игры =====
   const finishGame = (finalScore) => {
-    const info = saveRecord(finalScore, gameWords.length);
-    setRecordInfo(info);
+    const info = addRecord({
+      score: finalScore,
+      total: gameWords.length,
+      direction,
+    });
+    setRecordInfo({ isNew: true });
     setFinished(true);
   };
 
@@ -67,11 +80,11 @@ function Game({ count = 10, direction = 'ru-tj', onExit }) {
     stopSound('tick');
     stopSound('tickFast');
 
-    if (option === current[answerKey]) {   // 🆕 сравнение по answerKey
-      playSound('correct', { volume: 0.7 });
+    if (option === current[answerKey]) {
+      if (sound) playSound('correct', { volume: 0.7 });
       setScore((s) => s + 1);
     } else {
-      playSound('wrong', { volume: 0.7 });
+      if (sound) playSound('wrong', { volume: 0.7 });
     }
 
     setTimeout(nextQuestion, 1000);
@@ -82,7 +95,7 @@ function Game({ count = 10, direction = 'ru-tj', onExit }) {
     setSelected('__timeout__');
     stopSound('tick');
     stopSound('tickFast');
-    playSound('wrong', { volume: 0.7 });
+    if (sound) playSound('wrong', { volume: 0.7 });
     setTimeout(nextQuestion, 1000);
   };
 
@@ -110,6 +123,14 @@ function Game({ count = 10, direction = 'ru-tj', onExit }) {
 
   if (!current) return null;
 
+  // ===== Флаги направления =====
+  const dirEmoji = {
+    'ru-tj': '🇷🇺 → 🇹🇯',
+    'tj-ru': '🇹🇯 → 🇷🇺',
+    'en-tj': '🇬🇧 → 🇹🇯',
+    'tj-en': '🇹🇯 → 🇬🇧',
+  }[direction] || '🇷🇺 → 🇹🇯';
+
   return (
     <div className="game" key={gameId}>
       <div className="game-header">
@@ -118,10 +139,7 @@ function Game({ count = 10, direction = 'ru-tj', onExit }) {
         <button onClick={onExit}>Выйти</button>
       </div>
 
-      {/* 🆕 Показываем подсказку направления */}
-      <div className="direction-hint">
-        {direction === 'ru-tj' ? '🇷🇺 → 🇹🇯' : '🇹🇯 → 🇷🇺'}
-      </div>
+      <div className="direction-hint">{dirEmoji}</div>
 
       <Timer
         duration={12}
@@ -129,12 +147,12 @@ function Game({ count = 10, direction = 'ru-tj', onExit }) {
         resetKey={resetKey + gameId}
       />
 
-      {/* 🆕 Вопрос берём по questionKey */}
+
       <h2>Как переводится: «{current[questionKey]}»?</h2>
 
       <div className="options">
         {options.map((opt) => {
-          const isCorrect = opt === current[answerKey];   // 🆕
+          const isCorrect = opt === current[answerKey];
           const isSelected = selected === opt;
           const showCorrect = selected !== null && isCorrect && !isSelected;
 

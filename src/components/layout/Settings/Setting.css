@@ -1,0 +1,231 @@
+/* Основной контейнер приложения */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 70px; /* место под навигацию */
+}
+
+.app-content {
+  flex: 1;
+}
+
+/* ═══════ Нижняя навигация ═══════ */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 65px;
+  background: #16162a;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  padding: 8px 0;
+  transition: 0.2s;
+  font-family: inherit;
+}
+
+.nav-icon  { font-size: 22px; }
+.nav-label { font-size: 11px; }
+
+.nav-item.active {
+  color: #4caf50;
+  transform: translateY(-2px);
+}
+
+.nav-item.active .nav-icon {
+  filter: drop-shadow(0 0 6px rgba(76, 175, 80, 0.6));
+}
+
+/* ═══════ Экран рекордов ═══════ */
+.records-screen,
+.settings-screen {
+  padding: 30px 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.records-screen h1,
+.settings-screen h1 {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.records-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.record-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.record-item.rank-1 { border-color: #ffd700; background: rgba(255, 215, 0, 0.1); }
+.record-item.rank-2 { border-color: #c0c0c0; }
+.record-item.rank-3 { border-color: #cd7f32; }
+
+.rank { font-size: 24px; }
+.record-info { flex: 1; display: flex; flex-direction: column; }
+.record-percent { font-size: 20px; font-weight: bold; color: #4caf50; }
+.record-details { font-size: 13px; opacity: 0.7; }
+.record-date    { font-size: 12px; opacity: 0.5; }
+
+.empty {
+  text-align: center;
+  opacity: 0.6;
+  padding: 40px 20px;
+  line-height: 1.6;
+}
+
+/* ═══════ Экран настроек ═══════ */
+.setting-group {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.setting-group > label {
+  font-size: 15px;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.setting-group select {
+  padding: 12px 16px;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.direction-switch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.direction-switch button,
+.toggle-btn {
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  font-family: inherit;
+}
+
+.direction-switch button.active,
+.toggle-btn.on {
+  background: #4caf50;
+  border-color: #4caf50;
+}
+
+.toggle-btn.off {
+  background: rgba(244, 67, 54, 0.15);
+  border-color: #f44336;
+  color: #f44336;
+}
+
+.danger-btn {
+  padding: 12px;
+  background: rgba(244, 67, 54, 0.15);
+  border: 2px solid #f44336;
+  border-radius: 10px;
+  color: #f44336;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.saved-toast {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #4caf50;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  animation: fadeInOut 1.5s ease;
+}
+
+@keyframes fadeInOut {
+  0%   { opacity: 0; transform: translate(-50%, 20px); }
+  20%  { opacity: 1; transform: translate(-50%, 0); }
+  80%  { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, -10px); }
+}
+
+/* ═══════ Превью настроек на главной ═══════ */
+.settings-preview {
+  display: flex;
+  gap: 20px;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  font-size: 14px;
+  margin: 16px 0;
+}
+
+/* ═══════ Показ навигации только на мобилке ═══════ */
+@media (min-width: 768px) {
+  .bottom-nav { display: none; }
+  .app { padding-bottom: 0; }
+}
+.lang-switch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.lang-switch button {
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  font-family: inherit;
+}
+
+.lang-switch button.active {
+  background: #4caf50;
+  border-color: #4caf50;
+}

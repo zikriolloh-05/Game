@@ -1,29 +1,33 @@
 import React, { useState } from 'react';
-import Home from '../layout/Glavni/Glavni';
-import Game from '../layout/Game/Game';
-
+import Home from '../layout/Glavni/Glavni.jsx';
+import Game from '../layout/Game/Game.jsx';
+import Records from '../layout/Records/Records.jsx';
+import Settings from '../layout/Settings/Settings.jsx';
+import BottomNav from '../layout/BottomNav/BottomNav.jsx';
 
 function App() {
-  const [screen, setScreen] = useState('home');
-  const [count, setCount] = useState(10);
-  const [direction, setDirection] = useState('ru-tj');   // 🆕
+  const [tab, setTab] = useState('home');
+  const [gameKey, setGameKey] = useState(0);   // для перезапуска игры
 
-
-  const startGame = (cnt, dir) => {
-    setCount(cnt);
-    setDirection(dir);
-    setScreen('game');
+  const startGame = () => {
+    setGameKey((k) => k + 1);
+    setTab('game');
   };
 
-  return screen === 'home'
-    ? <Home onStart={startGame} />
-    : (
-      <Game
-        count={count}
-        direction={direction}
-        onExit={() => setScreen('home')}
-      />
-    );
+  const exitGame = () => setTab('home');
+
+  return (
+    <div className="app">
+      <main className="app-content">
+        {tab === 'home' && <Home onStart={startGame} />}
+        {tab === 'game' && <Game key={gameKey} onExit={exitGame} />}
+        {tab === 'records' && <Records />}
+        {tab === 'settings' && <Settings />}
+      </main>
+
+      <BottomNav active={tab} onChange={setTab} />
+    </div>
+  );
 }
 
 export default App;

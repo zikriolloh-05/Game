@@ -1,5 +1,55 @@
 // gameUtils.js
 
+// ===== НАСТРОЙКИ (localStorage) =====
+const SETTINGS_KEY = 'word_game_settings';
+
+export function getSettings() {
+  const raw = localStorage.getItem(SETTINGS_KEY);
+  return raw
+    ? JSON.parse(raw)
+    : { count: 10, direction: 'ru-tj', sound: true, lang:'ru'};
+}
+
+export function saveSettings(settings) {
+  localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+}
+
+// ===== ТОП-5 РЕКОРДОВ (localStorage) =====
+const RECORDS_KEY = 'word_game_records';
+
+export function getRecords() {
+  const raw = localStorage.getItem(RECORDS_KEY);
+  return raw ? JSON.parse(raw) : [];
+}
+
+export function addRecord({ score, total, direction }) {
+  const percent = total > 0 ? Math.round((score / total) * 100) : 0;
+  const newRecord = {
+    score,
+    total,
+    percent,
+    direction,
+    date: new Date().toISOString(),
+  };
+
+  const records = getRecords();
+  records.push(newRecord);
+
+  // Сортируем по проценту (убывание), потом по дате
+  records.sort((a, b) =>
+    b.percent - a.percent || new Date(b.date) - new Date(a.date)
+  );
+
+  // Оставляем только 5 лучших
+  const top5 = records.slice(0, 5);
+  localStorage.setItem(RECORDS_KEY, JSON.stringify(top5));
+  return top5;
+}
+
+export function clearRecords() {
+  localStorage.removeItem(RECORDS_KEY);
+}
+
 export function shuffle(array) {
   const arr = [...array];
   for (let i = arr.length - 1; i > 0; i--) {
