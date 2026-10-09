@@ -24,6 +24,23 @@ function Settings() {
 
             {/* Кол-во вопросов */}
             <div className="setting-group">
+
+                <label>Режим игры</label>
+                <div className="mode-switch">
+                    <button
+                        className={settings.mode === 'classic' ? 'active' : ''}
+                        onClick={() => update({ mode: 'classic' })}
+                    >
+                        🎮 Обычная
+                    </button>
+                    <button
+                        className={settings.mode === 'voice' ? 'active' : ''}
+                        onClick={() => update({ mode: 'voice' })}
+                    >
+                        🎤 Голосовая
+                    </button>
+                </div>
+
                 <label>Сколько вопросов?</label>
                 <select
                     value={settings.count}

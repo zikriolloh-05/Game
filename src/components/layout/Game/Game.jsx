@@ -7,6 +7,8 @@ import { wordsEn } from '../Words/words-en.jsx';              // 🆕
 import { getSettings, shuffle, getOptions, addRecord } from '../GameUtils/gameUtils.jsx';
 import { playSound, stopSound, stopAllSounds } from '../Sound/Sound.jsx';
 import '../Glavni/style.css';
+import './Game.css'
+import ProgressBar from '../ProgressBar/ProgressBar.jsx';
 
 function Game({ onExit }) {
   // ===== Настройки =====
@@ -138,6 +140,8 @@ function Game({ onExit }) {
         <span>Вопрос: {index + 1}/{gameWords.length}</span>
         <button onClick={onExit}>Выйти</button>
       </div>
+      <ProgressBar current={index + 1} total={gameWords.length} />   {/* 🆕 */}
+
 
       <div className="direction-hint">{dirEmoji}</div>
 
@@ -148,7 +152,7 @@ function Game({ onExit }) {
       />
 
 
-      <h2>Как переводится: «{current[questionKey]}»?</h2>
+      <h2 key={index}>Как переводится: «{current[questionKey]}»?</h2>
 
       <div className="options">
         {options.map((opt) => {

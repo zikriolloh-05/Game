@@ -1,0 +1,29 @@
+.circular-timer {
+  position: relative;
+  width: 82px;
+  height: 82px;
+  margin: 16px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circular-timer svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.circular-timer-text {
+  position: relative;
+  font-size: 26px;
+  font-weight: 700;
+  font-family: inherit;
+  transition: color 0.4s ease;
+}
+
+/* Мобильный */
+@media (max-width: 500px) {
+  .circular-timer { width: 70px; height: 70px; }
+  .circular-timer-text { font-size: 22px; }
+}

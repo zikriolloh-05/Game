@@ -1,0 +1,120 @@
+.voice-game {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.voice-game h2 {
+  font-size: 24px;
+  margin: 16px 0;
+}
+
+/* Статус */
+.voice-status {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 20px 0;
+  padding: 14px;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.voice-status.idle      { background: rgba(255,255,255,0.05); color: #aaa; }
+.voice-status.listening { background: rgba(244, 67, 54, 0.15); color: #ff5252; animation: pulse 1.2s infinite; }
+.voice-status.correct   { background: rgba(76, 175, 80, 0.2); color: #4caf50; }
+.voice-status.wrong     { background: rgba(244, 67, 54, 0.2); color: #f44336; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.6; }
+}
+
+/* Распознанный текст */
+.spoken-text {
+  font-size: 16px;
+  color: #ccc;
+  margin: 8px 0;
+}
+
+/* Правильный ответ при ошибке */
+.correct-answer-box {
+  background: rgba(76, 175, 80, 0.15);
+  border: 2px solid #4caf50;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 16px 0;
+  font-size: 18px;
+  color: #4caf50;
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25%      { transform: translateX(-8px); }
+  75%      { transform: translateX(8px); }
+}
+
+/* Ошибка микрофона */
+.mic-error {
+  background: rgba(244, 67, 54, 0.15);
+  border: 2px solid #f44336;
+  border-radius: 10px;
+  padding: 12px;
+  margin: 12px 0;
+  color: #f44336;
+  font-size: 14px;
+}
+
+/* Кнопки */
+.voice-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.mic-btn {
+  padding: 16px 36px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #e53935, #c62828);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 0.2s;
+  font-family: inherit;
+  box-shadow: 0 4px 20px rgba(229, 57, 53, 0.4);
+}
+
+.mic-btn:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 6px 30px rgba(229, 57, 53, 0.6);
+}
+
+.mic-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.skip-btn {
+  padding: 16px 28px;
+  font-size: 16px;
+  color: #fff;
+  background: rgba(255,255,255,0.1);
+  border: 2px solid rgba(255,255,255,0.2);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 0.2s;
+  font-family: inherit;
+}
+
+.skip-btn:hover:not(:disabled) {
+  background: rgba(255,255,255,0.2);
+}

@@ -1,0 +1,77 @@
+:root {
+  /* ═══════ ЦВЕТА ФОНА ═══════ */
+  --bg-primary:    #0f0f1e;
+  --bg-secondary:  #1a1a2e;
+  --bg-card:       #252542;
+  --bg-hover:      rgba(255, 255, 255, 0.08);
+  --bg-active:     rgba(255, 255, 255, 0.12);
+  --border:        rgba(255, 255, 255, 0.12);
+  --border-hover:  rgba(255, 255, 255, 0.25);
+
+  /* ═══════ АКЦЕНТНЫЕ ЦВЕТА ═══════ */
+  --accent:        #4caf50;
+  --accent-hover:  #43a047;
+  --accent-dark:   #2e7d32;
+  --accent-glow:   rgba(76, 175, 80, 0.4);
+  --accent-soft:   rgba(76, 175, 80, 0.15);
+
+  --error:         #f44336;
+  --error-soft:    rgba(244, 67, 54, 0.15);
+  --warning:       #ff9800;
+  --warning-soft:  rgba(255, 152, 0, 0.15);
+  --gold:          #ffd54f;
+
+  /* ═══════ ТЕКСТ ═══════ */
+  --text-primary:    #ffffff;
+  --text-secondary:  #a0a0b8;
+  --text-muted:      #6a6a80;
+
+  /* ═══════ ОТСТУПЫ (8px grid) ═══════ */
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  32px;
+  --space-2xl: 48px;
+
+  /* ═══════ РАДИУСЫ ═══════ */
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-xl:   20px;
+  --radius-full: 999px;
+
+  /* ═══════ ТЕНИ ═══════ */
+  --shadow-sm:    0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-md:    0 4px 16px rgba(0, 0, 0, 0.3);
+  --shadow-lg:    0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-glow:  0 4px 24px rgba(76, 175, 80, 0.4);
+  --shadow-error: 0 4px 24px rgba(244, 67, 54, 0.4);
+
+  /* ═══════ АНИМАЦИИ ═══════ */
+  --transition-fast:   150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow:   400ms ease;
+
+  /* ═══════ ТИПОГРАФИКА ═══════ */
+  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --fs-xs:  12px;
+  --fs-sm:  14px;
+  --fs-md:  16px;
+  --fs-lg:  20px;
+  --fs-xl:  26px;
+  --fs-2xl: 34px;
+
+  /* ═══════ РАЗМЕРЫ UI ═══════ */
+  --bottom-nav-height: 65px;
+  --content-max-width: 600px;
+}
+
+[data-theme="light"] {
+  --bg-primary:   #f5f5f7;
+  --bg-secondary: #ffffff;
+  --bg-card:      #f0f0f5;
+  --text-primary: #1a1a2e;
+  --text-secondary: #6a6a80;
+  --border: rgba(0,0,0,0.1);
+}

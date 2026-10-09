@@ -7,7 +7,7 @@ export function getSettings() {
   const raw = localStorage.getItem(SETTINGS_KEY);
   return raw
     ? JSON.parse(raw)
-    : { count: 10, direction: 'ru-tj', sound: true, lang:'ru'};
+    : { count: 10, direction: 'ru-tj', sound: true, lang:'ru',mode: viice};
 }
 
 export function saveSettings(settings) {

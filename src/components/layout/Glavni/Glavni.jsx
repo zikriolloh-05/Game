@@ -28,9 +28,6 @@ function Home({ onStart }) {
         ▶ Играть
       </button>
 
-      <p className="hero-hint">
-        Изменить настройки можно во вкладке <b>⚙️ Настройки</b>
-      </p>
     </section>
   );
 }

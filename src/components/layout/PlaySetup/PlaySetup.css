@@ -1,0 +1,127 @@
+.play-setup {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px 20px 100px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: pageIn 300ms ease;
+}
+
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.back-btn {
+  align-self: flex-start;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+  font-family: inherit;
+}
+.back-btn:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+.play-setup h1 {
+  font-size: 32px;
+  text-align: center;
+  margin: 10px 0 4px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #a0a0b8;
+  margin-bottom: 20px;
+}
+
+/* Группы настроек */
+.setup-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.setup-group label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  opacity: 0.9;
+}
+
+/* Ряд кнопок */
+.button-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.button-row.small {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.button-row button {
+  padding: 14px 12px;
+  background: rgba(255,255,255,0.06);
+  border: 2px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 200ms ease;
+  font-family: inherit;
+}
+
+.button-row button:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.25);
+  transform: translateY(-1px);
+}
+
+.button-row button.active {
+  background: #4caf50;
+  border-color: #4caf50;
+  box-shadow: 0 4px 16px rgba(76, 175, 80, 0.4);
+}
+
+/* Главная кнопка */
+.start-game-btn {
+  margin-top: 20px;
+  padding: 20px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #4caf50, #2e7d32);
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 250ms ease;
+  font-family: inherit;
+  box-shadow: 0 6px 24px rgba(76, 175, 80, 0.4);
+  letter-spacing: 0.5px;
+}
+
+.start-game-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 32px rgba(76, 175, 80, 0.6);
+}
+
+.start-game-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Мобильный адаптив */
+@media (max-width: 500px) {
+  .button-row.small {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .play-setup h1 { font-size: 26px; }
+}
