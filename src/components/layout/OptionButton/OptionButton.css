@@ -1,15 +1,29 @@
-.option-btn.correct {
-  animation: correctPulse 500ms ease;
-}
-
 @keyframes correctPulse {
   0%   { transform: scale(1); }
   50%  { transform: scale(1.06); }
   100% { transform: scale(1); }
 }
 
+.option-btn.correct {
+  background: #4caf50 !important;
+  color: #fff !important;
+  border-color: #4caf50 !important;
+  animation: correctPulse 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
 .option-btn.wrong {
+  background: #f44336 !important;
+  color: #fff !important;
+  border-color: #f44336 !important;
   animation: wrongShake 400ms ease;
+}
+
+/* ✨ Новые keyframes */
+
+@keyframes correctPulse {
+  0%   { transform: scale(1); box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7); }
+  50%  { transform: scale(1.06); box-shadow: 0 0 0 12px rgba(76, 175, 80, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
 }
 
 @keyframes wrongShake {
@@ -18,4 +32,19 @@
   40%      { transform: translateX(8px); }
   60%      { transform: translateX(-6px); }
   80%      { transform: translateX(6px); }
+}
+
+.option-btn {
+  animation: optionAppear 400ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+@keyframes optionAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }

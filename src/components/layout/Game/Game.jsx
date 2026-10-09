@@ -11,6 +11,7 @@ import './Game.css'
 import ProgressBar from '../ProgressBar/ProgressBar.jsx';
 
 function Game({ onExit }) {
+  const [transitioning, setTransitioning] = useState(false);
   // ===== Настройки =====
   const settings = useMemo(() => getSettings(), []);
   const { count = 10, direction = 'ru-tj', sound = true, lang = 'ru' } = settings;
@@ -51,7 +52,6 @@ function Game({ onExit }) {
     return () => stopAllSounds();
   }, []);
 
-  // ===== Завершение игры =====
   const finishGame = (finalScore) => {
     const info = addRecord({
       score: finalScore,
@@ -89,7 +89,13 @@ function Game({ onExit }) {
       if (sound) playSound('wrong', { volume: 0.7 });
     }
 
-    setTimeout(nextQuestion, 1000);
+    setTimeout(() => {
+      setTransitioning(true);       // 🆕 начинаем исчезновение
+      setTimeout(() => {
+        nextQuestion();             // смена вопроса
+        setTransitioning(false);    // 🆕 показываем новый
+      }, 200);
+    }, 800);
   };
 
   const handleTimeUp = () => {
@@ -142,7 +148,10 @@ function Game({ onExit }) {
       </div>
       <ProgressBar current={index + 1} total={gameWords.length} />   {/* 🆕 */}
 
-
+      {/* <div className={`game-body ${transitioning ? 'fade-out' : ''}`}>
+        <h2 key={index}>...</h2>
+        <div className="options">...</div>
+      </div> */}
       <div className="direction-hint">{dirEmoji}</div>
 
       <Timer
@@ -155,7 +164,7 @@ function Game({ onExit }) {
       <h2 key={index}>Как переводится: «{current[questionKey]}»?</h2>
 
       <div className="options">
-        {options.map((opt) => {
+        {options.map((opt, i) => {
           const isCorrect = opt === current[answerKey];
           const isSelected = selected === opt;
           const showCorrect = selected !== null && isCorrect && !isSelected;
@@ -168,6 +177,7 @@ function Game({ onExit }) {
               isSelected={isSelected}
               showCorrect={showCorrect}
               disabled={selected !== null}
+              style={{ animationDelay: `${i * 80}ms` }}   // 🆕
               onClick={() => handleAnswer(opt)}
             />
           );

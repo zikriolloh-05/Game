@@ -6,3 +6,31 @@
   from { opacity: 0; transform: translateY(15px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+.game-body {
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.game-body.fade-out {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.game {
+  height: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+}
+
+.game-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}

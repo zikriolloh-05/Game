@@ -9,6 +9,7 @@ function OptionButton({
   showCorrect,
   disabled,
   onClick,
+  style,
 }) {
   let className = 'option-btn';
 
@@ -20,7 +21,7 @@ function OptionButton({
   }
 
   return (
-    <button className={className} onClick={onClick} disabled={disabled}>
+    <button className={className} onClick={onClick} disabled={disabled} style={style}>
       {text}
     </button>
   );
